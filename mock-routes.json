@@ -1,0 +1,7 @@
+{
+    "/user-service/user/1234567890": "/data/user/data.json",
+    "/mock/test1": "/data/dr/test1.json",
+    "/mock/test2": "/data/dr/test2.json",
+    "/mock/test3": "/data/dr/test3.json"
+  }
+  
