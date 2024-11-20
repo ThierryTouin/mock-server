@@ -6,3 +6,9 @@ GET http://localhost:7000/mock HTTP/1.1
 
 ### Static URL
 GET http://localhost:7000/user-service/user/1234567890 HTTP/1.1
+
+### CSV to Json
+GET http://localhost:7000/load-csv HTTP/1.1
+
+### Invoices
+GET http://localhost:7000/invoices HTTP/1.1
