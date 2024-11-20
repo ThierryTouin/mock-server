@@ -1,5 +1,6 @@
 {
   "name": "mock-server",
+  "type": "module",
   "version": "1.0.0",
   "description": "server for create a mock api",
   "main": "mock-server.js",
@@ -7,5 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Thierry Touin",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "winston": "^3.17.0"
+  }
 }

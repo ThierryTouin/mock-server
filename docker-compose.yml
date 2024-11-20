@@ -1,0 +1,19 @@
+version: "3"
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+services:
+  mock-server:
+    container_name: mock-server
+    build: 
+        context: .
+        dockerfile: mock.Dockerfile   
+    image: mock-server:v1.0
+    ports:
+      - "7000:7000" 
+    networks:
+       - devnet
+      
