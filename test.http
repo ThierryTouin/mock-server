@@ -17,9 +17,6 @@ GET http://localhost:7000/companies HTTP/1.1
 ### Display routes
 GET http://localhost:7000/get-routes HTTP/1.1
 
-### CSV to Json
-GET http://localhost:7000/load-csv HTTP/1.1
-
 ### Change mode
 GET http://localhost:7000/update-mode?mode=test3 HTTP/1.1
 
