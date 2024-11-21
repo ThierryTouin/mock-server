@@ -12,7 +12,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Lecture des routes
-let routes = JSON.parse(fs.readFileSync("./mock-routes.json", "utf8"));
+const ROUTES_PATH_FILES = "./data/mock-routes.json";
+let routes = JSON.parse(fs.readFileSync(ROUTES_PATH_FILES, "utf8"));
 
 var mode = 'test1';
 
@@ -20,15 +21,19 @@ const SERVER_PORT = 7000;
 
 
 function displayRoute() {
+
+  var routesStr = JSON.stringify(routes, null, 2);
+
   logger.info("----- Routes -----");
-  logger.info(JSON.stringify(routes, null, 2));
-  logger.info("----- Routes -----");  
+  logger.info(routesStr);
+  logger.info("-----------------");  
+
+  return routesStr;
+
 }
 
-displayRoute();
 
-
-function generateJson(res) {
+function generateJson() {
   logger.info(`generateJson()`);
 
   const csvPath = path.join(__dirname, 'csv');
@@ -38,13 +43,10 @@ function generateJson(res) {
   // Appel de la fonction pour convertir les CSV en JSON
   convertCsvsInDirectory(routes, csvPath, jsonPath);
 
-  displayRoute();
-
   const result = `ok`;
   logger.info(result);
+  return result;
 
-  res.writeHead(200, { "Content-Type": "application/json" });
-  res.end(result);
 }
 
 
@@ -81,8 +83,11 @@ function manageResponse(req, res, url) {
 const requestListener = function (req, res) {
   logger.info(`> req.url=${req.url}`);
 
-  if (req.url.startsWith('/load-csv')) {
-    generateJson(res);
+  if (req.url.startsWith('/get-routes')) {
+    var result = displayRoute();
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(result);
+
   } else if (req.url.startsWith('/update-mode')) {
     manageMode(req, res, req.url);
   } else if (req.url.startsWith('/mock')) {
@@ -95,6 +100,9 @@ const requestListener = function (req, res) {
   }
 };
 
+displayRoute();
+generateJson();
+displayRoute();
 // Création du serveur HTTP
 const server = http.createServer(requestListener);
 
