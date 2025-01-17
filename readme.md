@@ -1,7 +1,12 @@
 ## Link
 https://cybercafe.dev/creating-simple-mock-api-server-using-nodejs/
 
-## Start the server
+## New official command
+```
+./cmd.sh
+```
+
+## Start the server whitout docker
 ```
 node mock-server.js
 ```
