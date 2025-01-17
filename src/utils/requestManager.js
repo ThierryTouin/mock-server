@@ -55,12 +55,14 @@ export function manageMode(req, res, url, mode) {
 
 export function manageResponse(req, res, url) {
   logger.info(`manageResponse() : ${url} -> ${routes[url]}`);
-
   // Read file only if route matched
-  if (routes[url]) {
+  const cleanUrl = url.split('?')[0];
+  logger.info(`manageResponse() : ${cleanUrl} -> ${routes[cleanUrl]}`);
+
+  if (routes[cleanUrl]) {
     res.setHeader("custom-header", 999999);
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(fs.readFileSync(__dirname + routes[url], "utf8"));
+    res.end(fs.readFileSync(__dirname + routes[cleanUrl], "utf8"));
   } else {
     logger.warn(`Route non trouvée : ${url}`);
     res.writeHead(404, { "Content-Type": "application/json" });

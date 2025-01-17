@@ -35,5 +35,5 @@ const server = http.createServer(requestListener);
 
 // Démarrage du serveur
 server.listen(SERVER_PORT, () => {
-  logger.info(`> Server is now up @ https://localhost:${SERVER_PORT}\n`);
+  logger.info(`> Server is now up @ http://localhost:${SERVER_PORT}\n`);
 });
