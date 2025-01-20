@@ -10,11 +10,17 @@ function display_help {
   echo "  cmd up          Start the application"
   echo "  cmd shell       Enter in container"
   echo "  cmd clean.......Clean the application"
+  echo "  cmd ex..........Export data configuration on ./tmp folder"
   echo
   exit 1
 }
 
 if [ $# -gt 0 ]; then
+  if [ "$1" == "ex" ]; then
+    if [ ! -d "./tmp" ]; then
+        mkdir ./tmp
+    fi
+    docker cp mock-server:/usr/src/app/data/ ./tmp
   if [ "$1" == "shell" ]; then
     docker container exec -it mock-server /bin/sh
   elif [ "$1" == "clean" ]; then
